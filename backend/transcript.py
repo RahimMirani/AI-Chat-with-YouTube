@@ -5,8 +5,9 @@ def get_transcript(video_id: str):
         transcript_initialize = YouTubeTranscriptApi()
         transcript_list = transcript_initialize.list(video_id)
         transcript = transcript_list.find_transcript(['en', 'en-US'])
-        transcript_data = transcript.fetch()
-        return " ".join([item.text for item in transcript_data])
+        transcript_data_raw = transcript.fetch()
+        transcript_filtered = " ".join([item.text for item in transcript_data_raw])
+        return transcript_filtered
     
     except (NoTranscriptFound, TranscriptsDisabled):
         print("No transcript found")
