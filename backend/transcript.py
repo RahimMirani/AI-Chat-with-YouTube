@@ -1,21 +1,13 @@
 from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound
 
-#print(dir(YouTubeTranscriptApi))
 
-
-video_id = "suakoHWghfg"
-Video1 = YouTubeTranscriptApi.get_transcript(video_id)
-
-print(Video1)
-
-
-"""
 def get_transcript(video_id: str):
    
     try:
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-        transcript_text = " ".join([item['text'] for item in transcript_list])
-        return transcript_text
+        transcript_initialize = YouTubeTranscriptApi()
+        transcript_list = transcript_initialize.fetch(video_id)
+        #transcript_text = " ".join([item['text'] for item in transcript_list])
+        return transcript_list
     
     except NoTranscriptFound:
         print("No transcript found")
@@ -26,7 +18,5 @@ def get_transcript(video_id: str):
         return None 
     
 
-video1 = get_transcript("ydTdJDJMiKE")
-print(video1)
-
-"""
+Video = get_transcript("ydTdJDJMiKE")
+print(Video)
