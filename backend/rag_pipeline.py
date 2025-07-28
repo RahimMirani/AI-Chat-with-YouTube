@@ -22,4 +22,17 @@ class ChatPipeline:
         embeddings = OpenAIEmbeddings()
         
         vector_store = FAISS.from_texts(docs, embeddings)
-        return vector_store 
+        return vector_store
+
+    def build_qa_chain(self):
+        vector_store = self._build_vector_store()
+        
+        llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+        
+        retriever = vector_store.as_retriever()
+        
+        self.qa_chain = RetrievalQA.from_chain_type(
+            llm=llm,
+            chain_type="stuff",
+            retriever=retriever
+        ) 
