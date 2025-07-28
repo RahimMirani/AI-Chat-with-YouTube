@@ -35,4 +35,11 @@ class ChatPipeline:
             llm=llm,
             chain_type="stuff",
             retriever=retriever
-        ) 
+        )
+
+    def ask_question(self, question: str):
+        if not self.qa_chain:
+            return "QA chain has not been built. Please call build_qa_chain() first."
+
+        response = self.qa_chain.invoke({"query": question})
+        return response.get("result") 
