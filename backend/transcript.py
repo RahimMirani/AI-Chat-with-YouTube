@@ -14,7 +14,3 @@ def get_transcript(video_id: str):
     
     except Exception as e:
         return (f"Error: {e}")
-
-
-Video = get_transcript("ydTdJDJMiKE")
-print(Video)
