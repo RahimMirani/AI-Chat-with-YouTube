@@ -5,3 +5,4 @@ langchain-openai
 faiss-cpu
 uvicorn
 python-dotenv 
+langchain_community
