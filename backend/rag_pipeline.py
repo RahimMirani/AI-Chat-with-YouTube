@@ -25,7 +25,7 @@ class ChatPipeline:
         return vector_store
 
     def build_qa_chain(self):
-        vector_store = self._build_vector_store()
+        vector_store = self.build_vector_store()
         
         llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
         
