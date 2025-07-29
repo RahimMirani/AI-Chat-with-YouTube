@@ -2,7 +2,7 @@
 
 This document outlines the phased development plan for creating a Chrome extension that allows users to chat with a YouTube video.
 
-## Phase 1: Core Backend - Transcript Processing and Q&A
+## Phase 1: Core Backend - Transcript Processing and Q&A (Completed)
 
 This phase focuses on creating a service that can understand a YouTube video and answer questions about it, without timestamp awareness.
 
