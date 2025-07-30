@@ -9,6 +9,7 @@ app = FastAPI()
 class ChatRequest(BaseModel):
     video_id: str
     question: str
+    timestamp: float | None = None
 
 @app.get("/")
 def read_root():
