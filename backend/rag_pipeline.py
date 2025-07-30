@@ -8,27 +8,27 @@ from langchain.chains import RetrievalQA
 load_dotenv()
 
 class ChatPipeline:
-    def __init__(self, transcript: str):
+    def __init__(self, transcript: list):
         self.transcript = transcript
         self.qa_chain = None
 
-    def build_vector_store(self):
+    def _build_vector_store(self):
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000, 
+            chunk_size=1000,
             chunk_overlap=100
         )
-        #split the transcript into chunks
-        docs = text_splitter.split_text(self.transcript)
-
-        #Embedding model to convert text into vector
+        
+        texts = [item.text for item in self.transcript]
+        metadatas = [{'start': item.start, 'duration': item.duration} for item in self.transcript]
+        documents = text_splitter.create_documents(texts, metadatas=metadatas)
+        
         embeddings = OpenAIEmbeddings()
-
-        #Creating the vector store
-        vector_store = FAISS.from_texts(docs, embeddings)
+        
+        vector_store = FAISS.from_documents(documents, embeddings)
         return vector_store
 
     def build_qa_chain(self):
-        vector_store = self.build_vector_store()
+        vector_store = self._build_vector_store()
         
         llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
         
