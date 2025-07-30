@@ -18,17 +18,20 @@ class ChatPipeline:
             chunk_overlap=100
         )
         
+        #split the transcript into chunks, and add metadata, for timestamps and duration
         texts = [item.text for item in self.transcript]
         metadatas = [{'start': item.start, 'duration': item.duration} for item in self.transcript]
         documents = text_splitter.create_documents(texts, metadatas=metadatas)
         
+        #Embedding model to convert text into vector
         embeddings = OpenAIEmbeddings()
         
+        #Creating the vector store
         vector_store = FAISS.from_documents(documents, embeddings)
         return vector_store
 
     def build_qa_chain(self):
-        vector_store = self._build_vector_store()
+        vector_store = self.build_vector_store()
         
         llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
         
