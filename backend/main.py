@@ -25,8 +25,8 @@ def chat_with_video(request: ChatRequest):
         )
 
     pipeline = ChatPipeline(transcript)
-    pipeline.build_qa_chain()
-    answer = pipeline.ask_question(request.question)
+    pipeline.build_qa_chain(timestamp=request.timestamp)
+    answer = pipeline.ask_question(request.question, timestamp=request.timestamp)
 
     if not answer:
         raise HTTPException(
