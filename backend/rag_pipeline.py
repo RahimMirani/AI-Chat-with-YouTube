@@ -14,13 +14,16 @@ class ChatPipeline:
 
     def build_vector_store(self):
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,
+            chunk_size=1000, 
             chunk_overlap=100
         )
+        #split the transcript into chunks
         docs = text_splitter.split_text(self.transcript)
-        
+
+        #Embedding model to convert text into vector
         embeddings = OpenAIEmbeddings()
-        
+
+        #Creating the vector store
         vector_store = FAISS.from_texts(docs, embeddings)
         return vector_store
 
