@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube RAG Chat",
+    "version": "1.0",
+    "description": "Chat with any YouTube video using its transcript.",
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.youtube.com/watch*"],
+            "js": ["content.js"]
+        }
+    ]
+} 
