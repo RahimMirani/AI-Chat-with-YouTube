@@ -24,4 +24,4 @@
     link.href = cssURL;
     document.head.appendChild(link);
 
-})(); 
+})();  
