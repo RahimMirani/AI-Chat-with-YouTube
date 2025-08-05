@@ -15,5 +15,11 @@
             "matches": ["https://www.youtube.com/watch*"],
             "js": ["content.js"]
         }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["chat.html", "style.css"],
+            "matches": ["https://www.youtube.com/*"]
+        }
     ]
 } 
