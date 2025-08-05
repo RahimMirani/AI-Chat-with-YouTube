@@ -6,6 +6,7 @@
     border: 1px solid hsl(0, 0%, 86.7%); /* Matches YouTube's border color */
     border-radius: 12px; /* Matches YouTube's border radius */
     overflow: hidden; /* Ensures content stays within the rounded corners */
+    display: flex; /* Use flexbox to manage height */
 }
 
 /* For YouTube's dark theme */
@@ -16,7 +17,8 @@
 
 #chat-container {
     width: 100%;
-    height: 500px;
+    height: auto; /* Allow the container to size naturally */
+    max-height: 600px; /* Set a max height to prevent it from being too tall */
     display: flex;
     flex-direction: column;
     font-family: 'Roboto', 'Arial', sans-serif;
