@@ -1,3 +1,6 @@
+// This script will be injected into the YouTube video page.
+// It is responsible for creating the chat UI and interacting with the page.
+
 (async () => {
     // This is the main entry point for our content script.
     // It runs as soon as the YouTube page's DOM is ready.
