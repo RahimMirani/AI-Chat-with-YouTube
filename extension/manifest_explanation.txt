@@ -1,0 +1,41 @@
+This file explains the purpose of each key in the manifest.json file.
+The JSON format does not support comments, so the explanations are kept here.
+
+{
+    "manifest_version": 3,
+    // This is required. Version 3 is the latest and most secure version of the Chrome extension platform.
+
+    "name": "YouTube RAG Chat",
+    // The name of your extension that will be displayed to users.
+
+    "version": "1.0",
+    // The initial version of your extension. You'll increment this when you release updates.
+
+    "description": "Chat with any YouTube video using its transcript.",
+    // A short description of what your extension does.
+
+    "permissions": [
+        "activeTab",
+        // This is a minimal and safe permission. It grants your extension temporary access to the currently active tab when the user clicks on your extension's icon. We will use this later if we add a popup.
+        
+        "scripting"
+        // This is a powerful permission that is required for the content script to be able to interact with the web page (like reading the timestamp or injecting HTML).
+    ],
+
+    "background": {
+        "service_worker": "background.js"
+    },
+    // This section defines the background script. A "service_worker" is a modern type of background script that runs independently of any web page.
+    // It's our extension's central communication hub. It can listen for events (like a new tab opening) and communicate with our backend API. It cannot directly interact with the content of a web page.
+
+    "content_scripts": [
+        {
+            "matches": ["https://www.youtube.com/watch*"],
+            // This tells Chrome *where* to run our content script. The pattern "https://www.youtube.com/watch*" will match any YouTube video page.
+
+            "js": ["content.js"]
+            // This tells Chrome *what* to run. It specifies that the file named "content.js" should be injected and executed on the matched pages.
+            // The content script is the only part of our extension that can directly access and manipulate the HTML and elements of the web page it's injected into.
+        }
+    ]
+} 
