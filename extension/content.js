@@ -34,9 +34,21 @@
         const messagesContainer = document.getElementById('chat-messages');
 
         // Listen for clicks on the send button
-        sendButton.addEventListener('click', () => {
+        sendButton.addEventListener('click', () => handleSend());
+
+        // Also listen for 'Enter' key in the input field
+        inputField.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                handleSend();
+            }
+        });
+
+        function handleSend() {
             const question = inputField.value;
-            if (!question) return; // Don't send empty messages
+            if (!question) return;
+
+            addMessage(question, 'user-message');
+            inputField.value = '';
 
             // Get the video ID from the URL
             const urlParams = new URLSearchParams(window.location.search);
@@ -46,13 +58,25 @@
             const player = document.querySelector('.html5-main-video');
             const timestamp = player ? player.currentTime : 0;
             
-            console.log("Question:", question);
-            console.log("Video ID:", videoId);
-            console.log("Timestamp:", timestamp);
+            chrome.runtime.sendMessage({
+                type: 'CHAT_MESSAGE',
+                payload: {
+                    videoId,
+                    question,
+                    timestamp
+                }
+            });
+        }
 
-            // Clear the input field after sending
-            inputField.value = '';
-        });
+        function addMessage(text, className) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+
+            // Scroll to the bottom of the messages container
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
 
     } else {
         console.error("YouTube RAG Chat: Could not find the secondary container to inject UI.");
