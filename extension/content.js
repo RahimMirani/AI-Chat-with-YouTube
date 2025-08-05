@@ -33,6 +33,11 @@
         const inputField = document.getElementById('chat-input');
         const messagesContainer = document.getElementById('chat-messages');
 
+        // Listen for clicks on the send button
+        sendButton.addEventListener('click', () => {
+            console.log("Send button clicked!");
+        });
+
     } else {
         console.error("YouTube RAG Chat: Could not find the secondary container to inject UI.");
     }
