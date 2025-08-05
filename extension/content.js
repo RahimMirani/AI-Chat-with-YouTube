@@ -27,6 +27,12 @@
         link.rel = 'stylesheet';
         link.href = cssURL;
         document.head.appendChild(link);
+
+        // Get references to the UI elements
+        const sendButton = document.getElementById('chat-send-button');
+        const inputField = document.getElementById('chat-input');
+        const messagesContainer = document.getElementById('chat-messages');
+
     } else {
         console.error("YouTube RAG Chat: Could not find the secondary container to inject UI.");
     }
