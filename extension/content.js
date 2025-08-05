@@ -2,26 +2,54 @@
 // It is responsible for creating the chat UI and interacting with the page.
 
 (async () => {
-    // This is the main entry point for our content script.
-    // It runs as soon as the YouTube page's DOM is ready.
-    console.log("YouTube RAG Chat content script loaded.");
+    // Wait for the specific element that contains the YouTube "Up Next" playlist to appear.
+    const secondaryContainer = await waitForElement('#secondary');
 
-    // Create a container for our chat UI
-    const app = document.createElement('div');
-    app.id = 'youtube-rag-chat-app';
-    document.body.appendChild(app);
+    if (secondaryContainer) {
+        console.log("YouTube RAG Chat: Secondary container found. Injecting UI.");
+        
+        // Create a container for our chat UI
+        const app = document.createElement('div');
+        app.id = 'youtube-rag-chat-app';
+        
+        // Inject our app as the first child of the container
+        secondaryContainer.prepend(app);
 
-    // Fetch the HTML for the chat UI and inject it into our container
-    const htmlURL = chrome.runtime.getURL('chat.html');
-    const response = await fetch(htmlURL);
-    const chatHtml = await response.text();
-    app.innerHTML = chatHtml;
+        // Fetch the HTML for the chat UI and inject it into our container
+        const htmlURL = chrome.runtime.getURL('chat.html');
+        const response = await fetch(htmlURL);
+        const chatHtml = await response.text();
+        app.innerHTML = chatHtml;
 
-    // Inject the CSS so our UI is styled correctly
-    const cssURL = chrome.runtime.getURL('style.css');
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = cssURL;
-    document.head.appendChild(link);
+        // Inject the CSS so our UI is styled correctly
+        const cssURL = chrome.runtime.getURL('style.css');
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = cssURL;
+        document.head.appendChild(link);
+    } else {
+        console.error("YouTube RAG Chat: Could not find the secondary container to inject UI.");
+    }
+})();
 
-})();  
+function waitForElement(selector) {
+    return new Promise(resolve => {
+        const element = document.querySelector(selector);
+        if (element) {
+            return resolve(element);
+        }
+
+        const observer = new MutationObserver(mutations => {
+            const element = document.querySelector(selector);
+            if (element) {
+                resolve(element);
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}  
