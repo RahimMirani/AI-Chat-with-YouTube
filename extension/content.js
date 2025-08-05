@@ -35,7 +35,23 @@
 
         // Listen for clicks on the send button
         sendButton.addEventListener('click', () => {
-            console.log("Send button clicked!");
+            const question = inputField.value;
+            if (!question) return; // Don't send empty messages
+
+            // Get the video ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('v');
+
+            // Get the current timestamp from the video player
+            const player = document.querySelector('.html5-main-video');
+            const timestamp = player ? player.currentTime : 0;
+            
+            console.log("Question:", question);
+            console.log("Video ID:", videoId);
+            console.log("Timestamp:", timestamp);
+
+            // Clear the input field after sending
+            inputField.value = '';
         });
 
     } else {
