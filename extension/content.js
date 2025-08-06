@@ -65,6 +65,19 @@
                     question,
                     timestamp
                 }
+            }, (response) => {
+                if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError.message);
+                    addMessage('Error: Could not connect to the backend.', 'bot-message');
+                    return;
+                }
+
+                if (response.error) {
+                    console.error('Backend error:', response.error);
+                    addMessage(response.error, 'bot-message');
+                } else {
+                    addMessage(response.answer, 'bot-message');
+                }
             });
         }
 
