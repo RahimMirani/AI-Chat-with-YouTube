@@ -45,17 +45,18 @@
 
 #welcome-header h2 {
     font-size: 20px;
+    color: #FF0000; /* YouTube Red */
     margin-bottom: 8px;
 }
 
 #welcome-header p {
     font-size: 14px;
-    color: hsl(0, 0%, 40%);
+    color: hsl(0, 0%, 95%);
     margin-bottom: 24px;
 }
 
 [dark] #welcome-header p {
-    color: hsl(0, 0%, 60%);
+    color: hsl(0, 0%, 95%);
 }
 
 #get-started-button {
@@ -64,14 +65,14 @@
     font-weight: 500;
     border-radius: 24px;
     border: none;
-    background-color: #3ea6ff;
+    background-color: #FF0000; /* YouTube Red */
     color: white;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 #get-started-button:hover {
-    background-color: #007bff;
+    background-color: #CC0000; /* Darker YouTube Red */
 }
 
 /* --- Processing Indicator --- */
@@ -208,4 +209,11 @@
 [dark] .bot-message {
     background-color: hsl(0, 0%, 22%);
     color: #f1f1f1;
+}
+
+/* User message to match YouTube's blue highlights */
+.user-message {
+    background-color: #3ea6ff;
+    color: white;
+    align-self: flex-end;
 } 
