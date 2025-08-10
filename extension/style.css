@@ -1,3 +1,8 @@
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
+
 /* Main container for the chat UI, designed to fit within YouTube's layout */
 #youtube-rag-chat-app {
     width: 100%;
@@ -25,6 +30,76 @@
 
 [dark] #chat-container {
     background-color: hsl(0, 0%, 15.3%);
+}
+
+/* --- Welcome View Styles --- */
+#welcome-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+}
+
+#welcome-header h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+#welcome-header p {
+    font-size: 14px;
+    color: hsl(0, 0%, 40%);
+    margin-bottom: 24px;
+}
+
+[dark] #welcome-header p {
+    color: hsl(0, 0%, 60%);
+}
+
+#get-started-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 24px;
+    border: none;
+    background-color: #3ea6ff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#get-started-button:hover {
+    background-color: #007bff;
+}
+
+/* --- Processing Indicator --- */
+#processing-indicator {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid hsl(0, 0%, 80%);
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+[dark] .spinner {
+    border-color: hsl(0, 0%, 33.3%);
+    border-top-color: #fff;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Header styling */
