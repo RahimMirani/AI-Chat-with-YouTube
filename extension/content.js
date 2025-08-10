@@ -43,7 +43,26 @@
 
         // Listen for clicks on the "Get Started" button
         getStartedButton.addEventListener('click', () => {
-            console.log("Get Started button clicked!");
+            getStartedButton.disabled = true;
+            processingIndicator.classList.remove('hidden');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('v');
+
+            chrome.runtime.sendMessage({
+                type: 'PROCESS_VIDEO',
+                payload: { video_id: videoId }
+            }, (response) => {
+                if (chrome.runtime.lastError || response.error) {
+                    console.error(chrome.runtime.lastError?.message || response.error);
+                    processingIndicator.querySelector('p').textContent = 'Error processing video.';
+                    return;
+                }
+                
+                // On success, switch to the main chat view
+                welcomeView.classList.add('hidden');
+                mainChatView.classList.remove('hidden');
+            });
         });
 
         // Listen for clicks on the send button
