@@ -11,11 +11,11 @@
     border-radius: 12px; /* Matches YouTube's border radius */
     overflow: hidden; /* Ensures content stays within the rounded corners */
     display: flex; /* Use flexbox to make the inner container fill the height */
+    border: 1px solid hsl(0, 0%, 86.7%); /* Light theme border */
 }
 
 /* For YouTube's dark theme */
 [dark] #youtube-rag-chat-app {
-    background-color: hsl(0, 0%, 15.3%);
     border: 1px solid hsl(0, 0%, 26.7%);
 }
 
@@ -25,11 +25,11 @@
     display: flex;
     flex-direction: column;
     font-family: 'Roboto', 'Arial', sans-serif;
-    background-color: hsl(0, 0%, 96.1%);
+    background-color: hsl(0, 0%, 98%); /* Slightly off-white for light theme */
 }
 
 [dark] #chat-container {
-    background-color: hsl(0, 0%, 15.3%);
+    background-color: hsl(0, 0%, 12%); /* YouTube's dark theme background */
 }
 
 /* --- Welcome View Styles --- */

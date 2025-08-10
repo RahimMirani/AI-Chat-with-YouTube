@@ -28,10 +28,23 @@
         link.href = cssURL;
         document.head.appendChild(link);
 
-        // Get references to the UI elements
+        // --- New UI logic starts here ---
+
+        // Get references to the new UI elements
+        const getStartedButton = document.getElementById('get-started-button');
+        const processingIndicator = document.getElementById('processing-indicator');
+        const welcomeView = document.getElementById('welcome-view');
+        const mainChatView = document.getElementById('main-chat-view');
+
+        // Get references to the chat UI elements
         const sendButton = document.getElementById('chat-send-button');
         const inputField = document.getElementById('chat-input');
         const messagesContainer = document.getElementById('chat-messages');
+
+        // Listen for clicks on the "Get Started" button
+        getStartedButton.addEventListener('click', () => {
+            console.log("Get Started button clicked!");
+        });
 
         // Listen for clicks on the send button
         sendButton.addEventListener('click', () => handleSend());
