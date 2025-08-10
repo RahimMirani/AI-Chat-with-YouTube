@@ -1,12 +1,28 @@
 <div id="chat-container">
-    <div id="chat-header">
-        <h2>YouTube Chat</h2>
+    <!-- Initial "Get Started" view -->
+    <div id="welcome-view">
+        <div id="welcome-header">
+            <h2>YouTube Chat</h2>
+            <p>Chat with any video by first processing its transcript.</p>
+        </div>
+        <button id="get-started-button">Get Started</button>
+        <div id="processing-indicator" class="hidden">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
     </div>
-    <div id="chat-messages">
-        <!-- Messages will be added here -->
-    </div>
-    <div id="chat-input-container">
-        <input type="text" id="chat-input" placeholder="Ask about the video...">
-        <button id="chat-send-button">Send</button>
+
+    <!-- Main chat view, hidden by default -->
+    <div id="main-chat-view" class="hidden">
+        <div id="chat-header">
+            <h2>YouTube Chat</h2>
+        </div>
+        <div id="chat-messages">
+            <!-- Messages will be added here -->
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Ask about the video...">
+            <button id="chat-send-button">Send</button>
+        </div>
     </div>
 </div> 
