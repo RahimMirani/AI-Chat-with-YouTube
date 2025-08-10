@@ -1,5 +1,28 @@
 // Listen for messages from the content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === 'PROCESS_VIDEO') {
+        const processVideo = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/process_video', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(request.payload),
+                });
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                sendResponse(data);
+            } catch (error) {
+                console.error('Error processing video:', error);
+                sendResponse({ error: error.message });
+            }
+        };
+        processVideo();
+        return true; // Keep message channel open for async response
+    }
+    
     if (request.type === 'CHAT_MESSAGE') {
         //This is an async function to handle the API call
         const getAiResponse = async () => {
