@@ -61,7 +61,7 @@
             chrome.runtime.sendMessage({
                 type: 'CHAT_MESSAGE',
                 payload: {
-                    videoId,
+                    video_id: videoId,
                     question,
                     timestamp
                 }
