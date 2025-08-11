@@ -92,6 +92,10 @@
     animation: spin 1s linear infinite;
 }
 
+#processing-indicator p {
+    color: hsl(0, 0%, 95%);
+}
+
 [dark] .spinner {
     border-color: hsl(0, 0%, 33.3%);
     border-top-color: #fff;
