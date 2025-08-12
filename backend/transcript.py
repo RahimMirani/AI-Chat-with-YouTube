@@ -10,8 +10,9 @@ def get_transcript(video_id: str):
         # return transcript_filtered
         return transcript_data_raw
     
-    except (NoTranscriptFound, TranscriptsDisabled):
-        return "No transcript found"
     
+    except (NoTranscriptFound, TranscriptsDisabled):
+        return None # Return None on failure
     except Exception as e:
-        return (f"Error: {e}")
+        print(f"Error: {e}") # Keep the print for debugging, but return None
+        return None
