@@ -64,7 +64,19 @@ def chat_with_video(request: ChatRequest):
 
     try:
         response = qa_chain.invoke({"query": question})
-        return {"answer": response.get("result")}
+        
+        # Handle different LangChain response structures
+        if isinstance(response, dict):
+            # Try different possible keys that LangChain might use
+            answer = response.get("result") or response.get("answer") or response.get("output") or str(response)
+        elif isinstance(response, str):
+            # Direct string response
+            answer = response
+        else:
+            # Fallback: convert to string
+            answer = str(response)
+            
+        return {"answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate answer: {e}") 
 
