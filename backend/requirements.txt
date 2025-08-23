@@ -1,8 +1,9 @@
-fastapi
-langchain
-youtube-transcript-api
-langchain-openai
-faiss-cpu
-uvicorn
-python-dotenv 
-langchain_community
+fastapi==0.104.1
+langchain==0.1.0
+youtube-transcript-api==0.6.2
+langchain-openai==0.0.5
+langchain-community==0.0.10
+faiss-cpu==1.7.4
+uvicorn==0.24.0
+python-dotenv==1.0.0
+pydantic==2.5.2
