@@ -49,13 +49,32 @@
             const urlParams = new URLSearchParams(window.location.search);
             const videoId = urlParams.get('v');
 
+            // Validate video ID exists
+            if (!videoId) {
+                console.error('No video ID found in URL');
+                processingIndicator.querySelector('p').textContent = 'Error: No video found. Please make sure you\'re on a YouTube video page.';
+                // Reset error state to allow retry
+                setTimeout(() => {
+                    getStartedButton.disabled = false;
+                    processingIndicator.classList.add('hidden');
+                    processingIndicator.querySelector('p').textContent = 'Processing...';
+                }, 3000);
+                return;
+            }
+
             chrome.runtime.sendMessage({
                 type: 'PROCESS_VIDEO',
                 payload: { video_id: videoId }
             }, (response) => {
                 if (chrome.runtime.lastError || response.error) {
                     console.error(chrome.runtime.lastError?.message || response.error);
-                    processingIndicator.querySelector('p').textContent = 'Error processing video.';
+                    processingIndicator.querySelector('p').textContent = 'Error processing video. Please try again.';
+                    // Reset error state to allow retry
+                    setTimeout(() => {
+                        getStartedButton.disabled = false;
+                        processingIndicator.classList.add('hidden');
+                        processingIndicator.querySelector('p').textContent = 'Processing...';
+                    }, 3000);
                     return;
                 }
                 
