@@ -14,8 +14,8 @@ def create_rag_pipeline(transcript: list):
     """
     
     # Create documents with metadata
-    texts = [item.text for item in transcript]
-    metadatas = [{'start': item.start, 'duration': item.duration} for item in transcript]
+    texts = [item['text'] for item in transcript]
+    metadatas = [{'start': item['start'], 'duration': item['duration']} for item in transcript]
     
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
