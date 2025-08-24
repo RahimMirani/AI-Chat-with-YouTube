@@ -36,18 +36,22 @@ def read_root():
 
 @app.post("/api/process_video")
 def process_video(request: ProcessRequest):
+    print(f"/api/process_video called with video_id={request.video_id}")
     if request.video_id in PIPELINE_CACHE:
         return {"status": "ok", "message": "Video already processed."}
 
     transcript = get_transcript(request.video_id)
     if not isinstance(transcript, list):
+        print(f"Transcript fetch failed for video_id={request.video_id}; got type={type(transcript)} value={transcript}")
         raise HTTPException(status_code=404, detail="Transcript not found or is invalid.")
     
     try:
         qa_chain = create_rag_pipeline(transcript)
         PIPELINE_CACHE[request.video_id] = qa_chain
+        print(f"Successfully built pipeline for video_id={request.video_id}")
         return {"status": "ok", "message": "Video processed successfully."}
     except Exception as e:
+        print(f"Pipeline build error for video_id={request.video_id}: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to process video: {e}")
 
 
