@@ -14,30 +14,6 @@ Chat with any YouTube video in real-time using a Retrieval-Augmented Generation 
 
 The project consists of a Python backend that powers the RAG pipeline and a Chrome extension that serves as the frontend.
 
-```mermaid
-graph TD
-    subgraph Browser
-        A[Chrome Extension UI]
-    end
-
-    subgraph Backend Server
-        B[FastAPI Endpoints]
-        C[RAG Pipeline]
-        D[FAISS Vector Store]
-    end
-    
-    subgraph External APIs
-        E[YouTube Transcript API]
-        F[OpenAI API]
-    end
-
-    A -- HTTP Request --> B
-    B -- Processes Video --> C
-    C -- Gets Transcript --> E
-    C -- Builds Vector Store --> D
-    C -- Generates Answer --> F
-    B -- HTTP Response --> A
-```
 
 1.  The **Chrome Extension** is injected into a YouTube video page.
 2.  When you click "Get Started", the extension sends the video ID to the **FastAPI Backend**.
@@ -47,6 +23,7 @@ graph TD
     - The embeddings are stored in a **FAISS vector store**.
 5.  When you ask a question, the backend retrieves relevant context from the vector store and uses **OpenAI's GPT model** to generate an answer.
 6.  The answer is sent back to the extension and displayed in the chat UI.
+
 
 ## Tech Stack
 
