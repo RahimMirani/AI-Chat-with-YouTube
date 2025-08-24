@@ -1,9 +1,9 @@
 fastapi==0.104.1
-langchain==0.1.0
+langchain==0.1.16
 youtube-transcript-api==0.6.2
-langchain-openai==0.0.5
-langchain-community==0.0.10
-faiss-cpu==1.7.4
+langchain-openai==0.0.8
+langchain-community==0.0.36
+faiss-cpu
 uvicorn==0.24.0
 python-dotenv==1.0.0
-pydantic==2.5.2
+pydantic==2.11.7

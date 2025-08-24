@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Optional
 
 from transcript import get_transcript
 from rag_pipeline import create_rag_pipeline
@@ -26,7 +27,7 @@ class ProcessRequest(BaseModel):
 class ChatRequest(BaseModel):
     video_id: str
     question: str
-    timestamp: float | None = None
+    timestamp: Optional[float] = None
 
 # --- API Endpoints ---
 @app.get("/")
