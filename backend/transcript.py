@@ -3,31 +3,22 @@ from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound, Tran
 
 def get_transcript(video_id: str):
     try:
-        # Prefer manual or auto-generated English transcripts
-        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
-        transcript = None
+        ytt_api = YouTubeTranscriptApi()
+        fetched = ytt_api.fetch(video_id, languages=['en', 'en-US'])
+        return fetched.to_raw_data()
+    except NoTranscriptFound:
         try:
-            transcript = transcript_list.find_transcript(['en', 'en-US'])
-        except NoTranscriptFound:
-            try:
-                transcript = transcript_list.find_generated_transcript(['en', 'en-US'])
-            except NoTranscriptFound:
-                transcript = None
-
-        if transcript is not None:
-            return transcript.fetch()
-
-        # Fallback: translate first available transcript to English
-        for t in transcript_list:
-            try:
-                return t.translate('en').fetch()
-            except Exception:
-                continue
-
-        return None
-
-    except (NoTranscriptFound, TranscriptsDisabled) as e:
-        print(f"Transcript not available for {video_id}: {e}")
+            ytt_api = YouTubeTranscriptApi()
+            fetched = ytt_api.fetch(video_id, languages=['en'])
+            return fetched.to_raw_data()
+        except (NoTranscriptFound, TranscriptsDisabled) as e:
+            print(f"Transcript not available for {video_id}: {e}")
+            return None
+        except Exception as e:
+            print(f"Error on fallback fetch for {video_id}: {e}")
+            return None
+    except TranscriptsDisabled as e:
+        print(f"Transcripts disabled for {video_id}: {e}")
         return None
     except Exception as e:
         print(f"Error fetching transcript for {video_id}: {e}")

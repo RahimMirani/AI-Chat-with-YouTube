@@ -1,6 +1,6 @@
 fastapi==0.104.1
 langchain==0.1.16
-youtube-transcript-api==0.6.2
+youtube-transcript-api>=0.6.3
 langchain-openai==0.0.8
 langchain-community==0.0.36
 faiss-cpu
