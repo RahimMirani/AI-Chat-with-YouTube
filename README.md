@@ -2,14 +2,6 @@
 
 Chat with any YouTube video in real-time using a Retrieval-Augmented Generation (RAG) pipeline. This Chrome extension injects a chat interface directly into the YouTube page, allowing you to ask questions about the video and get answers based on its transcript.
 
-## Demo
-
-*(Consider adding a screenshot or a GIF of the extension in action here.)*
-
-The chat interface will appear on the right-hand side of the YouTube video player.
-
-![image](https://github.com/user-attachments/assets/150e7724-c13c-4113-902e-c3527b14d334)
-
 
 ## Features
 
