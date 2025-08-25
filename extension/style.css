@@ -150,8 +150,9 @@
 /* Input container */
 #chat-input-container {
     display: flex;
-    padding: 16px;
+    padding: 14px 16px;
     border-top: 1px solid hsl(0, 0%, 86.7%);
+    gap: 10px;
 }
 
 [dark] #chat-input-container {
@@ -162,8 +163,8 @@
     flex-grow: 1;
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
+    padding: 10px 16px;
+    font-size: 15px;
     background-color: transparent;
     color: hsl(0, 0%, 6.7%);
 }
@@ -174,15 +175,15 @@
 }
 
 #chat-send-button {
-    margin-left: 10px;
-    padding: 8px 16px;
+    margin-left: 0;
+    padding: 10px 16px;
     border: none;
     background-color: hsl(0, 0%, 93.3%);
     color: hsl(0, 0%, 6.7%);
     border-radius: 20px;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 [dark] #chat-send-button {
@@ -200,33 +201,32 @@
 
 /* Individual message styling */
 .message {
-    padding: 10px 14px;
-    border-radius: 20px;
+    padding: 12px 16px;
+    border-radius: 18px;
     max-width: 85%;
     word-wrap: break-word;
-    line-height: 1.4;
+    line-height: 1.5;
+    font-size: 15px;
 }
 
 .user-message {
     background-color: #3ea6ff;
     color: white;
     align-self: flex-end;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
 
 .bot-message {
-    background-color: hsl(0, 0%, 89.8%);
+    background-color: hsl(0, 0%, 96%);
     color: #030303;
     align-self: flex-start;
+    border: 1px solid hsl(0, 0%, 90%);
 }
 
 [dark] .bot-message {
-    background-color: hsl(0, 0%, 22%);
+    background-color: hsl(0, 0%, 18%);
     color: #f1f1f1;
+    border: 1px solid hsl(0, 0%, 26%);
 }
 
-/* User message to match YouTube's blue highlights */
-.user-message {
-    background-color: #3ea6ff;
-    color: white;
-    align-self: flex-end;
-} 
+ 
