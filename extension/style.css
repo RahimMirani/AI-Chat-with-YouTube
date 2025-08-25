@@ -128,6 +128,14 @@
     color: hsl(0, 0%, 93.3%);
 }
 
+/* Ensure the main chat view uses flex so the input stays at the bottom and messages can scroll */
+#main-chat-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0; /* allow child flex item (#chat-messages) to shrink and scroll */
+}
+
 /* Messages area */
 #chat-messages {
     flex-grow: 1;
@@ -136,6 +144,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    min-height: 0; /* enable scrolling within flex parent */
 }
 
 /* Input container */

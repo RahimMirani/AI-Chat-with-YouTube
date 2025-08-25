@@ -81,6 +81,8 @@
                 // On success, switch to the main chat view
                 welcomeView.classList.add('hidden');
                 mainChatView.classList.remove('hidden');
+                // Focus the input field for immediate typing
+                inputField.focus();
             });
         });
 
