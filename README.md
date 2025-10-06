@@ -86,3 +86,5 @@ Next, load the Chrome extension:
 3.  The chat interface will appear on the right side of the page.
 4.  Click **Get Started** to process the video.
 5.  Once the processing is complete, you can start asking questions about the video!
+
+Please start if you found the repo usefel!
